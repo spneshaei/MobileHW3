@@ -16,15 +16,34 @@ class DataManager {
     // MARK: Fields
     
     private var allTodos: [Todo] = []
+    private var allCategories: [Category] = []
     
     var todos: [Todo] {
         allTodos
     }
     
-    // MARK: Todo actions
+    var categories: [Category] {
+        allCategories
+    }
+    
+    // MARK: Query methods
+    
+    func category(title: String) -> Category? {
+        allCategories.first { $0.title == title }
+    }
+    
+    // MARK: Actions
+    
+    func add(category: Category) {
+        allCategories.append(category)
+    }
     
     func add(todo: Todo) {
         allTodos.append(todo)
+    }
+    
+    func add(todo: Todo, to category: Category) {
+        todo.add(to: category)
     }
     
     func editTitle(todo: Todo, to title: String) {

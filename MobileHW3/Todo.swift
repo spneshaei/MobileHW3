@@ -15,6 +15,9 @@ class Todo {
     var content: String
     var priority: Int
     var dateCreated: Date
+    var categories: [Category] = []
+    
+    // MARK: Initializer
     
     init(title: String, content: String, priority: Int) {
         self.id = UUID().uuidString
@@ -22,5 +25,11 @@ class Todo {
         self.title = title
         self.content = content
         self.priority = priority
+    }
+    
+    // MARK: Actions
+    
+    func add(to category: Category) {
+        categories.append(category)
     }
 }
