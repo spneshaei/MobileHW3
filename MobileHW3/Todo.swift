@@ -14,9 +14,11 @@ class Todo {
     var title: String
     var content: String
     var priority: Int
+    var dateCreated: Date
     
     init(title: String, content: String, priority: Int) {
         self.id = UUID().uuidString
+        self.dateCreated = Date()
         self.title = title
         self.content = content
         self.priority = priority
