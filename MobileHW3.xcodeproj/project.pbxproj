@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4215DC2F26652BD600E5FF14 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215DC2E26652BD600E5FF14 /* main.swift */; };
+		4215DC3726652C9100E5FF14 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215DC3626652C9100E5FF14 /* Todo.swift */; };
+		4215DC3A26652CC500E5FF14 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215DC3926652CC500E5FF14 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		4215DC2B26652BD600E5FF14 /* MobileHW3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MobileHW3; sourceTree = BUILT_PRODUCTS_DIR; };
 		4215DC2E26652BD600E5FF14 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4215DC3626652C9100E5FF14 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		4215DC3926652CC500E5FF14 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				4215DC2E26652BD600E5FF14 /* main.swift */,
+				4215DC3626652C9100E5FF14 /* Todo.swift */,
+				4215DC3926652CC500E5FF14 /* DataManager.swift */,
 			);
 			path = MobileHW3;
 			sourceTree = "<group>";
@@ -120,6 +126,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4215DC2F26652BD600E5FF14 /* main.swift in Sources */,
+				4215DC3A26652CC500E5FF14 /* DataManager.swift in Sources */,
+				4215DC3726652C9100E5FF14 /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
