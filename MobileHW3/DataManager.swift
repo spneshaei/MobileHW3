@@ -41,6 +41,10 @@ class DataManager {
     func add(todo: Todo) {
         allTodos.append(todo)
     }
+
+    func addTodo(title: String, content: String , priority: Int){
+        add(todo: Todo(title: title , content: content, priority: priority))
+    }
     
     func add(todo: Todo, to category: Category) {
         todo.add(to: category)
