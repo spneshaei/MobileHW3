@@ -7,4 +7,4 @@
 
 import Foundation
 
-print("hi")
+CommandProcessor.instance.run()
