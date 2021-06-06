@@ -11,7 +11,6 @@ class Category: Equatable {
 
     // MARK: Fields
     
-    var id: String
     var title: String
     var todos: [Todo] {
         DataManager.shared.todos.filter { $0.categories.contains(self) }
@@ -21,7 +20,6 @@ class Category: Equatable {
     
     init?(title: String) {
         guard !DataManager.shared.categories.contains(where: { $0.title == title }) else { return nil }
-        self.id = UUID().uuidString
         self.title = title
     }
     

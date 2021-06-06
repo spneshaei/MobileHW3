@@ -75,9 +75,9 @@ class DataManager {
     func sortedTodos(by sortingProperty: TodoSortingProperty, order: SortingOrder) -> [Todo] {
         allTodos.sorted { first, second in
             switch sortingProperty {
-            case .date: return order == .ascending ? first.dateCreated < second.dateCreated : first.dateCreated < second.dateCreated
-            case .title: return order == .ascending ? first.title < second.title : first.title < second.title
-            case .priority: return order == .ascending ? first.priority < second.priority : first.priority < second.priority
+            case .date: return order == .ascending ? first.dateCreated < second.dateCreated : second.dateCreated < first.dateCreated
+            case .title: return order == .ascending ? first.title < second.title : second.title < first.title
+            case .priority: return order == .ascending ? first.priority < second.priority : second.priority < first.priority
             }
         }
     }
