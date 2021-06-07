@@ -115,19 +115,54 @@ class CommandProcessor {
     }
 
     func sortTodos(){
-        print("hi")
+        print("Enter sorting order(1/2):\n1. Ascending \n2.Descending")
+        let order = readNumber(from: 1, to: 2)
+        print("Enter sorting property(1/2/3): \n1.Date \n2.Title \n3.Priority")
+        let property = readNumber(from: 1, to: 2)
+        for todo in DataManager.sortedTodos(DataManager.sortingProperty(rawValue: property), DataManager.SortingOrder(rawValue: order)) {
+            print("Id: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
+        }
     }
 
     func addCategory(){
-        print("hi")
+        print("Enter category name: ")
+        let name = readLine()
+        guard let createdCategory = new Category(name)
+        else {
+            print("Category with this title exists.")
+            retrun;
+        }
+        DataManager.add(category: createdCategory)
+        print("Category with title \(name) added successfully.")
     }
 
     func addTodosToCategory(){
-        print("hi")
+        print("Enter Todo Id: \n")
+        guard let selectedTodo = DataManager.todo(id: readLine())
+        else {
+            print("No Todo with this Id is found.")
+            return
+        }
+        print("Enter Category title: ")
+        guard let selectedCategory = DataManager.category(title: readLine())
+        else {
+            print("No Category with this title is found.")
+            return
+        }
+        DataManager.add(todo: selectedTodo, to: selectedCategory)
+        print("Successfully added to selected category")
     }
 
     func showTodosOfCategory(){
-        print("hi")
+        print("Enter Category title: ")
+        guard let selectedCategory = DataManager.category(title: readLine())
+        else {
+            print("No Category with this title is found.")
+            return
+        }
+        for todo in selectedCategory.todos {
+            print("Id: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
+        }
     }
 
     func addCommands() {
