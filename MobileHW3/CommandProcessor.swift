@@ -39,11 +39,13 @@ class CommandProcessor {
             case 6:
                 addCategory()
             case 7:
-                showAllCategories()
+                showCategories()
             case 8:
                 addTodosToCategory()
             case 9:
                 showTodosOfCategory()
+            case 10:
+                showCategoriesOfTodo()
             default:
                 continue
             }
@@ -76,14 +78,14 @@ class CommandProcessor {
         print("-----------------------------")
     }
     
-    func showAllCategories() {
-        guard !DataManager.shared.categories.isEmpty else {
+    func showCategories(categories: [Category] = DataManager.shared.categories) {
+        guard !categories.isEmpty else {
             print("No category found :(")
             return
         }
         var i = 1
         print("-----------------------------")
-        for category in DataManager.shared.categories {
+        for category in categories {
             print("\(i)- title: \(category.title), number of todos: \(category.todos.count)")
             i += 1
         }
@@ -158,11 +160,13 @@ class CommandProcessor {
     }
 
     func addTodosToCategory(){
+        showTodos()
         print("Enter Todo ID: \n")
         guard let todoIDInput = readLine(), let selectedTodo = DataManager.shared.todo(id: todoIDInput) else {
             print("No Todo with this ID is found.")
             return
         }
+        showCategories()
         print("Enter Category title: ")
         guard let categoryTitleInput = readLine(), let selectedCategory = DataManager.shared.category(title: categoryTitleInput) else {
             print("No Category with this title is found.")
@@ -170,17 +174,28 @@ class CommandProcessor {
         }
         DataManager.shared.add(todo: selectedTodo, to: selectedCategory)
         print("Successfully added to selected category")
+        print("Current category \(selectedCategory.title)'s todos:")
+        print(showTodos(todos: selectedCategory.todos))
     }
 
     func showTodosOfCategory(){
+        showCategories()
         print("Enter Category title: ")
         guard let categoryTitleInput = readLine(), let selectedCategory = DataManager.shared.category(title: categoryTitleInput) else {
             print("No Category with this title is found.")
             return
         }
-        for todo in selectedCategory.todos {
-            print("Id: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
+        showTodos(todos: selectedCategory.todos)
+    }
+    
+    func showCategoriesOfTodo(){
+        showTodos()
+        print("Enter todo ID: ")
+        guard let todoIDInput = readLine(), let selectedTodo = DataManager.shared.todo(id: todoIDInput) else {
+            print("No todo with this ID is found.")
+            return
         }
+        showCategories(categories: selectedTodo.categories)
     }
 
     func addCommands() {
@@ -193,6 +208,7 @@ class CommandProcessor {
         commands.append("Show all categories")
         commands.append("Add todos to categories")
         commands.append("Show todos of a category")
+        commands.append("Show categories of a todo")
         commands.append("Exit")
     }
     
