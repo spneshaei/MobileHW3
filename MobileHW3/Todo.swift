@@ -30,6 +30,8 @@ class Todo {
     // MARK: Actions
     
     func add(to category: Category) {
-        categories.append(category)
+        if !categories.contains(category) {
+            categories.append(category)
+        }
     }
 }
