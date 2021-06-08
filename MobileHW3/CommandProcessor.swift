@@ -39,8 +39,10 @@ class CommandProcessor {
             case 6:
                 addCategory()
             case 7:
-                addTodosToCategory()
+                showAllCategories()
             case 8:
+                addTodosToCategory()
+            case 9:
                 showTodosOfCategory()
             default:
                 continue
@@ -69,6 +71,20 @@ class CommandProcessor {
         print("-----------------------------")
         for todo in DataManager.shared.todos {
             print("\(i)- id: \(todo.id), title: \(todo.title), content: \(todo.content), priority: \(todo.priority)")
+            i += 1
+        }
+        print("-----------------------------")
+    }
+    
+    func showAllCategories() {
+        guard !DataManager.shared.categories.isEmpty else {
+            print("No Todo found :(")
+            return
+        }
+        var i = 1
+        print("-----------------------------")
+        for category in DataManager.shared.categories {
+            print("\(i)- title: \(category.title), number of todos: \(category.todos.count)")
             i += 1
         }
         print("-----------------------------")
@@ -124,6 +140,10 @@ class CommandProcessor {
             print("Sorting property number is invalid")
             return
         }
+        guard !DataManager.shared.todos.isEmpty else {
+            print("No Todo found :(")
+            return
+        }
         for todo in DataManager.shared.sortedTodos(by: sortingProperty, order: sortingOrder) {
             print("ID: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
         }
@@ -172,6 +192,7 @@ class CommandProcessor {
         commands.append("Delete a todo")
         commands.append("Sort todos")
         commands.append("Add a category")
+        commands.append("Show all categories")
         commands.append("Add todos to categories")
         commands.append("Show todos of a category")
         commands.append("Exit")
