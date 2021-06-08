@@ -36,6 +36,10 @@ class DataManager {
         allTodos.first{$0.id == id}
     }
     
+    func todo(title: String) -> Todo? {
+        allTodos.first{$0.title == title}
+    }
+    
     // MARK: Actions
     
     func add(category: Category) {

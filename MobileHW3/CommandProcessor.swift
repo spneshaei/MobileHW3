@@ -20,7 +20,7 @@ class CommandProcessor {
                 print("Good bye.")
                 break
             }
-            if commandNum == 0 || commandNum > commands.count {
+            if commandNum <= 0 || commandNum > commands.count {
                 print("invalid input. try again later.")
                 continue
             }
@@ -49,16 +49,13 @@ class CommandProcessor {
 
     func addTodo(){
         print("Enter title:")
-        let title = readLine()
+        guard let title = readLine() else { return }
         print("Enter content:")
-        let content = readLine()
+        guard let content = readLine() else { return }
         print("Enter priority:")
-        let priority = readNumber(from: 0, to: 1000000)
-        if priority == nil{
-            return
-        }
-        todo = DataManager.shared.addTodo(title: title, content: content , priority: priority)
-        print("successfully created todo with id \(todo.id)")
+        guard let priority = readNumber(from: 0, to: 1000000) else { return }
+        DataManager.shared.addTodo(title: title, content: content, priority: priority)
+        print("Successfully created todo with title \(title)")
     }
 
     func showAllTodos(){
@@ -73,49 +70,43 @@ class CommandProcessor {
 
     func editTodo(){
         showAllTodos()
-        print("Enter item number that you want to edit:")
-        let numb = readNumber(from: 0, to: DataManager.shared.todos.count)
-        if numb == nil{
+        print("Enter todo ID that you want to edit:")
+        guard let id = readLine() else { return }
+        guard let todo = DataManager.shared.todo(id: id) else {
+            print("No todo with the given ID found")
             return
         }
-        todo = DataManager.shared.todos[numb]
         print("Enter new title (if you don't want to change just press enter):")
-        let title = readLine()
-        if title != "" {
-            DataManager.shared.editTitle(todo:todo , to: title)
-            print("successfully edited title of todo.")
+        if let title = readLine(), title != "" {
+            DataManager.shared.editTitle(todo: todo , to: title)
+            print("Successfully edited title of todo.")
         }
         print("Enter new content (if you don't want to change just press enter):")
-        let content = readLine()
-        if content != "" {
-            DataManager.shared.editContent(todo:todo , to: content)
-            print("successfully edited content of todo.")
+        if let content = readLine(), content != "" {
+            DataManager.shared.editContent(todo: todo , to: content)
+            print("Successfully edited content of todo.")
         }
         print("Enter new priority (if you don't want to change just press 0):")
-        let priority = readNumber(from: 0, to: 1000000)
-        if priority == nil{
-            return
-        } 
-        if priority != 0 {
-            DataManager.shared.editPriority(todo:todo , to: priority)
-            print("successfully edited priority of todo.")
+        if let priority = readNumber(from: 0, to: 1000000), priority != 0 {
+            DataManager.shared.editPriority(todo: todo , to: priority)
+            print("Successfully edited priority of todo.")
         }
     }
 
     func deleteTodo(){
         showAllTodos()
-        print("Enter item number that you want to delete:")
-        let numb = readNumber(from: 0, to: DataManager.shared.todos.count)
-        if numb == nil{
+        print("Enter todo ID that you want to delete:")
+        guard let id = readLine() else { return }
+        guard let todo = DataManager.shared.todo(id: id) else {
+            print("No todo with the given ID found")
             return
         }
-        todo = DataManager.shared.todos[numb]
         DataManager.shared.remove(todo: todo)
-        print("successfully deleted todo.")
+        print("Successfully deleted todo.")
     }
 
     func sortTodos(){
-        print("Enter sorting order(1/2):\n1. Ascending \n2.Descending")
+        print("Enter sorting order (1/2):\n1. Ascending\n2. Descending")
         let order = readNumber(from: 1, to: 2)
         print("Enter sorting property(1/2/3): \n1.Date \n2.Title \n3.Priority")
         let property = readNumber(from: 1, to: 2)
@@ -124,39 +115,34 @@ class CommandProcessor {
         }
     }
 
-    func addCategory(){
-        print("Enter category name: ")
-        let name = readLine()
-        guard let createdCategory = new Category(name)
-        else {
+    func addCategory() {
+        print("Enter category title: ")
+        guard let title = readLine(), let createdCategory = Category(title: title) else {
             print("Category with this title exists.")
-            retrun;
+            return;
         }
-        DataManager.add(category: createdCategory)
-        print("Category with title \(name) added successfully.")
+        DataManager.shared.add(category: createdCategory)
+        print("Category with title \(title) added successfully.")
     }
 
     func addTodosToCategory(){
         print("Enter Todo Id: \n")
-        guard let selectedTodo = DataManager.todo(id: readLine())
-        else {
-            print("No Todo with this Id is found.")
+        guard let todoIDInput = readLine(), let selectedTodo = DataManager.shared.todo(id: todoIDInput) else {
+            print("No Todo with this id is found.")
             return
         }
         print("Enter Category title: ")
-        guard let selectedCategory = DataManager.category(title: readLine())
-        else {
+        guard let categoryTitleInput = readLine(), let selectedCategory = DataManager.shared.category(title: categoryTitleInput) else {
             print("No Category with this title is found.")
             return
         }
-        DataManager.add(todo: selectedTodo, to: selectedCategory)
+        DataManager.shared.add(todo: selectedTodo, to: selectedCategory)
         print("Successfully added to selected category")
     }
 
     func showTodosOfCategory(){
         print("Enter Category title: ")
-        guard let selectedCategory = DataManager.category(title: readLine())
-        else {
+        guard let categoryTitleInput = readLine(), let selectedCategory = DataManager.shared.category(title: categoryTitleInput) else {
             print("No Category with this title is found.")
             return
         }
@@ -193,7 +179,7 @@ class CommandProcessor {
         let numb = Int(input!) ?? (from - 1)
         if numb > to || numb < from{
             print("invalid number. try again later")
-            retrun nil
+            return nil
         }
         return numb
     }
