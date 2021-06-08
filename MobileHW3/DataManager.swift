@@ -31,6 +31,10 @@ class DataManager {
     func category(title: String) -> Category? {
         allCategories.first { $0.title == title }
     }
+
+    func todo(id: String) -> Todo? {
+        allTodos.first{$0.id == id}
+    }
     
     // MARK: Actions
     
@@ -40,6 +44,10 @@ class DataManager {
     
     func add(todo: Todo) {
         allTodos.append(todo)
+    }
+
+    func addTodo(title: String, content: String , priority: Int){
+        add(todo: Todo(title: title , content: content, priority: priority))
     }
     
     func add(todo: Todo, to category: Category) {
