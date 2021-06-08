@@ -7,4 +7,4 @@
 
 import Foundation
 
-CommandProcessor.instance.run()
+TodoAppManager.instance.run()
