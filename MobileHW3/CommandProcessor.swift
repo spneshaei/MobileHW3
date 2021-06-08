@@ -13,6 +13,7 @@ class CommandProcessor {
 
     func run() {
         addCommands()
+        welcome()
         help()
         while let input = readLine() {
             let commandNum = Int(input) ?? 0
@@ -44,6 +45,7 @@ class CommandProcessor {
             default:
                 continue
             }
+            help()
         }
     }
 
@@ -174,10 +176,14 @@ class CommandProcessor {
         commands.append("Show todos of a category")
         commands.append("Exit")
     }
+    
+    func welcome() {
+        print("Welcome to the Todo list manager!")
+        print("-----------------------------")
+    }
 
     func help() {
-        print("welcome to todo list manager!")
-        print("-----------------------------")
+        print("\nAvailable commands:\n")
         var i = 1
         for command in commands{
             print("\(i)- \(command)")
