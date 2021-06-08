@@ -76,12 +76,12 @@ class DataManager {
     
     // MARK: Sorting todos
     
-    enum TodoSortingProperty {
-        case date, title, priority
+    enum TodoSortingProperty: Int {
+        case date = 1, title = 2, priority = 3
     }
     
-    enum SortingOrder {
-        case ascending, descending
+    enum SortingOrder: Int {
+        case ascending = 1, descending = 2
     }
     
     func sortedTodos(by sortingProperty: TodoSortingProperty, order: SortingOrder) -> [Todo] {

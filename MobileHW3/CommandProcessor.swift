@@ -58,7 +58,11 @@ class CommandProcessor {
         print("Successfully created todo with title \(title)")
     }
 
-    func showAllTodos(){
+    func showAllTodos() {
+        guard !DataManager.shared.todos.isEmpty else {
+            print("No Todo found :(")
+            return
+        }
         var i = 1
         print("-----------------------------")
         for todo in DataManager.shared.todos {
@@ -107,11 +111,19 @@ class CommandProcessor {
 
     func sortTodos(){
         print("Enter sorting order (1/2):\n1. Ascending\n2. Descending")
-        let order = readNumber(from: 1, to: 2)
-        print("Enter sorting property(1/2/3): \n1.Date \n2.Title \n3.Priority")
-        let property = readNumber(from: 1, to: 2)
-        for todo in DataManager.sortedTodos(DataManager.sortingProperty(rawValue: property), DataManager.SortingOrder(rawValue: order)) {
-            print("Id: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
+        guard let order = readNumber(from: 1, to: 2) else { return }
+        print("Enter sorting property (1/2/3):\n1. Date\n2. Title\n3. Priority")
+        guard let property = readNumber(from: 1, to: 3) else { return }
+        guard let sortingOrder = DataManager.SortingOrder(rawValue: order) else {
+            print("Sorting order number is invalid")
+            return
+        }
+        guard let sortingProperty = DataManager.TodoSortingProperty(rawValue: property) else {
+            print("Sorting property number is invalid")
+            return
+        }
+        for todo in DataManager.shared.sortedTodos(by: sortingProperty, order: sortingOrder) {
+            print("ID: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
         }
     }
 
@@ -119,16 +131,16 @@ class CommandProcessor {
         print("Enter category title: ")
         guard let title = readLine(), let createdCategory = Category(title: title) else {
             print("Category with this title exists.")
-            return;
+            return
         }
         DataManager.shared.add(category: createdCategory)
         print("Category with title \(title) added successfully.")
     }
 
     func addTodosToCategory(){
-        print("Enter Todo Id: \n")
+        print("Enter Todo ID: \n")
         guard let todoIDInput = readLine(), let selectedTodo = DataManager.shared.todo(id: todoIDInput) else {
-            print("No Todo with this id is found.")
+            print("No Todo with this ID is found.")
             return
         }
         print("Enter Category title: ")
