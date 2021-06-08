@@ -29,7 +29,7 @@ class CommandProcessor {
             case 1:
                 addTodo()
             case 2:
-                showAllTodos()
+                showTodos()
             case 3:
                 editTodo()
             case 4:
@@ -62,15 +62,15 @@ class CommandProcessor {
         print("Successfully created todo with title \(title)")
     }
 
-    func showAllTodos() {
-        guard !DataManager.shared.todos.isEmpty else {
+    func showTodos(todos: [Todo] = DataManager.shared.todos) {
+        guard !todos.isEmpty else {
             print("No Todo found :(")
             return
         }
         var i = 1
         print("-----------------------------")
-        for todo in DataManager.shared.todos {
-            print("\(i)- id: \(todo.id), title: \(todo.title), content: \(todo.content), priority: \(todo.priority)")
+        for todo in todos {
+            print("\(i)- id: \(todo.id), title: \(todo.title), content: \(todo.content), priority: \(todo.priority), date: \(todo.dateCreated.description(with: .current))")
             i += 1
         }
         print("-----------------------------")
@@ -78,7 +78,7 @@ class CommandProcessor {
     
     func showAllCategories() {
         guard !DataManager.shared.categories.isEmpty else {
-            print("No Todo found :(")
+            print("No category found :(")
             return
         }
         var i = 1
@@ -91,7 +91,7 @@ class CommandProcessor {
     }
 
     func editTodo(){
-        showAllTodos()
+        showTodos()
         print("Enter todo ID that you want to edit:")
         guard let id = readLine() else { return }
         guard let todo = DataManager.shared.todo(id: id) else {
@@ -116,7 +116,7 @@ class CommandProcessor {
     }
 
     func deleteTodo(){
-        showAllTodos()
+        showTodos()
         print("Enter todo ID that you want to delete:")
         guard let id = readLine() else { return }
         guard let todo = DataManager.shared.todo(id: id) else {
@@ -144,9 +144,7 @@ class CommandProcessor {
             print("No Todo found :(")
             return
         }
-        for todo in DataManager.shared.sortedTodos(by: sortingProperty, order: sortingOrder) {
-            print("ID: \(todo.id) \n\tTitle: \(todo.title) \n\tDate: \(todo.dateCreated) \n\tContent: \(todo.content)")
-        }
+        showTodos(todos: DataManager.shared.sortedTodos(by: sortingProperty, order: sortingOrder))
     }
 
     func addCategory() {
