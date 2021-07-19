@@ -1,6 +1,6 @@
 # MobileHW3
 Swift Programming Language - Mobile App Development Course - Sharif University of Technology
-
+<p dir="rtl">
 # تمرین ۳ درس برنامه‌سازی موبایل
 
 ## اعضای تیم
@@ -10,8 +10,10 @@ Swift Programming Language - Mobile App Development Course - Sharif University o
 
 # اجرای برنامه
 
+
 برنامه به شکل یک پروژه‌ی Xcode در GitHub آپلود شده و صحت اجرای آن در Xcode 12.5 بررسی شده است. اجرای برنامه از اسکریپت موجود در main.swift اجرا می‌شود، به گونه‌ای که خط ۱۰ این فایل در هنگام اجرای پروژه، اجرا خواهد شد.
 از مفاهیم شی‌گرایی Swift در طراحی برنامه استفاده شده است.
+  
 
 
 # امکانات برنامه
@@ -37,3 +39,4 @@ Swift Programming Language - Mobile App Development Course - Sharif University o
 با وارد کردن عدد ۱۰ می‌توان دسته‌بندی‌هایی که یک todo در آن قرار دارد را مشاهده کرد؛ با وارد کردن این عدد، ابتدا تمام todo ها نمایش داده شده و سپس نام مربوط به todo ای که می‌خواهیم به آن todo بیفزاییم را وارد می‌کنیم (در صورت اشتباه وارد کردن آن، خطای No Todo with this ID is found. چاپ می‌شود). در نهایت و در صورت موفقیت، اگر todoی انتخاب شده، دردسته‌بندی‌ای موجود نبود، No category found :( نمایش داده شده و در غیر این صورت، لیست دسته‌بندی‌هایی که todo در آن قرار دارد، نمایش داده خواهد شد.
 
 با وارد کردن عدد ۱۱، از برنامه خارج می‌شویم.
+</p>
