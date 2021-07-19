@@ -1,9 +1,9 @@
 # MobileHW3
 Swift Programming Language - Mobile App Development Course - Sharif University of Technology
 
-&#x202b;# تمرین ۳ درس برنامه‌سازی موبایل
+# تمرین ۳ درس برنامه‌سازی موبایل
 
-&#x202b;## اعضای تیم
+## اعضای تیم
 سید پارسا نشایی - &#x202b;98106134
 محمدطه جهانی‌نژاد - &#x202b;98101363
 مهدی ابوترابی - &#x202b;98105557
