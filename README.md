@@ -7,10 +7,10 @@ Swift Programming Language - Mobile App Development Course - Sharif University o
 <p dir="rtl">
 سید پارسا نشایی - 98106134
 
-  <p dir="rtl">
+<p dir="rtl">
   محمدطه جهانی‌نژاد - 98101363
  
-    <p dir="rtl">
+<p dir="rtl">
 مهدی ابوترابی - 98105557
 <p dir="rtl">
 اجرای برنامه:
