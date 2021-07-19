@@ -1,15 +1,15 @@
 # MobileHW3
 Swift Programming Language - Mobile App Development Course - Sharif University of Technology
 <p dir="rtl">
-# تمرین ۳ درس برنامه‌سازی موبایل
+تمرین ۳ درس برنامه‌سازی موبایل
 <p dir="rtl">
-## اعضای تیم
-
+اعضای تیم:
+<p dir="rtl">
 سید پارسا نشایی -98106134
 محمدطه جهانی‌نژاد - 98101363
 مهدی ابوترابی -98105557
 <p dir="rtl">
-# اجرای برنامه
+اجرای برنامه:
 </p>
 <p dir="rtl">
 برنامه به شکل یک پروژه‌ی Xcode در GitHub آپلود شده و صحت اجرای آن در Xcode 12.5 بررسی شده است. اجرای برنامه از اسکریپت موجود در main.swift اجرا می‌شود، به گونه‌ای که خط ۱۰ این فایل در هنگام اجرای پروژه، اجرا خواهد شد.
@@ -17,7 +17,8 @@ Swift Programming Language - Mobile App Development Course - Sharif University o
   
 
 <p dir="rtl">
-# امکانات برنامه
+  امکانات برنامه:
+  
 </p><p dir="rtl">
 پس از خوش‌آمدگویی، با وارد کردن عدد ۱ (عددها و عبارات همه به انگلیسی وارد می‌شوند) می‌توانیم یک todo جدید اضافه کنیم. سپس عنوان و محتوا و priority آن (که یک عدد طبیعی است) وارد می‌شود.
 <p dir="rtl">
