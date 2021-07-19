@@ -5,9 +5,11 @@ Swift Programming Language - Mobile App Development Course - Sharif University o
 <p dir="rtl">
 اعضای تیم:
 <p dir="rtl">
-سید پارسا نشایی -98106134
-محمدطه جهانی‌نژاد - 98101363
-مهدی ابوترابی -98105557
+سید پارسا نشایی - 98106134
+
+  محمدطه جهانی‌نژاد - 98101363
+  
+مهدی ابوترابی - 98105557
 <p dir="rtl">
 اجرای برنامه:
 </p>
